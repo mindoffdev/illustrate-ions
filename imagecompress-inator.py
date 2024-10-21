@@ -9,7 +9,7 @@ def process_image(file_path):
     try:
         with Image.open(file_path) as img:
             # Resize image to a maximum of 10x10 pixels while maintaining aspect ratio
-            img.thumbnail((10, 10), Image.LANCZOS)
+            img.thumbnail((5, 5), Image.LANCZOS)
 
             # Save the image to a BytesIO object
             buffered = BytesIO()
@@ -38,7 +38,7 @@ def encode_images_to_base64(folder_path, output_folder, new_images_only):
         # Process each image
         for image_path in image_paths:
             filename = os.path.basename(image_path)
-            output_file_path = os.path.join(output_folder, f"{os.path.splitext(filename)[0]}.datauri")  # Change to .datauri
+            output_file_path = os.path.join(output_folder, f"{os.path.splitext(filename)[0]}.jpeg")  # Save as .jpeg
             
             # Check if the output file already exists and skip processing if required
             if new_images_only and os.path.exists(output_file_path):
@@ -49,11 +49,10 @@ def encode_images_to_base64(folder_path, output_folder, new_images_only):
             result = process_image(image_path)
             if result and result[1] is not None:  # Check if the base64 string is not None
                 base64_images[result[0]] = result[1]
-                # Format as data URI
-                data_uri = f"data:image/jpeg;base64,{result[1]}"
-                # Save data URI to a file
-                with open(output_file_path, 'w') as output_file:
-                    output_file.write(data_uri)
+                
+                # Save the base64 data as an image file
+                with open(output_file_path, 'wb') as output_file:
+                    output_file.write(base64.b64decode(result[1]))
             else:
                 print(f"Skipping saving for {filename} due to processing error.")
 
