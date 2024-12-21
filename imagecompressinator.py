@@ -27,7 +27,7 @@ def encode_images_to_base64(folder_path, output_folder, new_images_only):
     os.makedirs(output_folder, exist_ok=True)
 
     # Use ThreadPoolExecutor to process images in parallel for better performance
-    with ThreadPoolExecutor() as executor:
+    with ThreadPoolExecutor():
         # Gather all image paths
         image_paths = [
             os.path.join(folder_path, filename)
