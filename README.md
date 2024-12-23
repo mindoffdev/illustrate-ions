@@ -13,4 +13,4 @@ Playful, open-source high-resolution cartoon illustrations with flat backgrounds
 
 [![License](https://img.shields.io/badge/License-CC0-blue.svg)](https://opensource.org/licenses/MIT)
 
-Any Assets that represents Logo or Intellectual Property of any legal establishment are trademarks of their respective owners and are under their terms and license
+*Any Assets that represents Logo or Intellectual Property of any legal establishment are trademarks of their respective owners and are under their terms and license*
